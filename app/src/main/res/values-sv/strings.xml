@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">uznair</string>
-    <string name="greeting_header">Hello!</string>
+    <string name="greeting_header">Hejsan!</string>
     <string name="description_paragraph">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </string>
-    <string name="player_name_input">Name</string>
-    <string name="play_button">Play</string>
-    <string name="highscore_button">Highscore</string>
+    <string name="player_name_input">Namn</string>
+    <string name="play_button">Spela</string>
+    <string name="highscore_button">Topplista</string>
 </resources>
