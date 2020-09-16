@@ -8,8 +8,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         playButton = findViewById(R.id.playButton)
         playButton.isEnabled = false
 
-        playerNameInputField = findViewById(R.id.editTextTextPersonName)
+        playerNameInputField = findViewById(R.id.playerNameInput)
 
         playerNameInputField.addTextChangedListener(object: TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -42,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun playButton(view: View) {
-        var playerName = findViewById<TextView>(R.id.editTextTextPersonName).text.toString()
+        var playerName = findViewById<TextView>(R.id.playerNameInput).text.toString()
         Log.d("!!!", "playerName: $playerName")
     }
 
