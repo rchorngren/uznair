@@ -1,22 +1,26 @@
 package com.example.uznair
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var playButton: Button
     lateinit var playerNameInputField :  TextView
+    lateinit var currentPlayer : Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        currentPlayer = Player("", 0)
 
         playButton = findViewById(R.id.playButton)
         playButton.isEnabled = false
@@ -40,8 +44,14 @@ class MainActivity : AppCompatActivity() {
 
 
     fun playButton(view: View) {
-        var playerName = findViewById<TextView>(R.id.playerNameInput).text.toString()
-        Log.d("!!!", "playerName: $playerName")
+        currentPlayer.name = findViewById<TextView>(R.id.playerNameInput).text.toString()
+        //currentPlayer.Logging()
+        var playerName = currentPlayer.name
+        var playIntent = Intent(this, GameActivity::class.java)
+
+        playIntent.putExtra("playerName", playerName)
+
+        startActivity(playIntent)
     }
 
 
