@@ -2,6 +2,7 @@ package com.example.uznair
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -19,8 +20,13 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
 
         var playerName = intent.getStringExtra("playerName")
+
         var highButton = findViewById<Button>(R.id.upButton)
         var lowButton = findViewById<Button>(R.id.downButton)
+
+        while(initialRandomNumber == newRandomNumber) {
+            newRandomNumber = (1..10).random()
+        }
 
         highButton.setOnClickListener {
             guessHigher()
@@ -39,8 +45,9 @@ class GameActivity : AppCompatActivity() {
 
     fun guessHigher() {
 
-        if(initialRandomNumber > newRandomNumber) {
+        if(initialRandomNumber < newRandomNumber) {
             answer.text = "Correct"
+            //increase score in Player.score
         }
         else {
             answer.text = "Wrong"
@@ -50,8 +57,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guessLower() {
-        if(initialRandomNumber < newRandomNumber) {
+        if(initialRandomNumber > newRandomNumber) {
             answer.text = "Correct"
+            //increase score in Player.score
         }
         else {
             answer.text = "Wrong"
