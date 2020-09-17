@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
     fun playButton(view: View) {
         currentPlayer.name = findViewById<TextView>(R.id.playerNameInput).text.toString()
-        //currentPlayer.Logging()
         var playerName = currentPlayer.name
         var playIntent = Intent(this, GameActivity::class.java)
 

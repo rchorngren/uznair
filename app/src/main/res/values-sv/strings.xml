@@ -8,4 +8,6 @@
     <string name="player_name_input">Namn</string>
     <string name="play_button">Spela</string>
     <string name="highscore_button">Topplista</string>
+    <string name="up_button">Högre</string>
+    <string name="down_button">Lägre</string>
 </resources>
