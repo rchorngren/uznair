@@ -2,13 +2,13 @@ package com.example.uznair
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
 
-    lateinit var nameTest : TextView
+    lateinit var initialNumber : TextView
     lateinit var answer : TextView
     lateinit var newNumber : TextView
     var initialRandomNumber : Int = (1..10).random()
@@ -23,6 +23,8 @@ class GameActivity : AppCompatActivity() {
 
         var highButton = findViewById<Button>(R.id.upButton)
         var lowButton = findViewById<Button>(R.id.downButton)
+        var anotherGame = findViewById<Button>(R.id.anotherGameButton)
+
 
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
@@ -36,15 +38,18 @@ class GameActivity : AppCompatActivity() {
             guessLower()
         }
 
-        nameTest = findViewById(R.id.nameTest)
+        anotherGame.setOnClickListener {
+            anotherGame()
+        }
 
-        nameTest.text = initialRandomNumber.toString()
+        initialNumber = findViewById(R.id.initialNumber)
+
+        initialNumber.text = initialRandomNumber.toString()
         answer = findViewById(R.id.answerText)
         newNumber = findViewById(R.id.newNumber)
     }
 
     fun guessHigher() {
-
         if(initialRandomNumber < newRandomNumber) {
             answer.text = "Correct"
             //increase score in Player.score
@@ -66,6 +71,18 @@ class GameActivity : AppCompatActivity() {
         }
 
         newNumber.text = newRandomNumber.toString()
+    }
+
+    fun anotherGame() {
+
+        initialRandomNumber = newRandomNumber
+
+        initialNumber.text = initialRandomNumber.toString()
+        newNumber.text = "To be revealed soon"
+
+        newRandomNumber = (1..10).random()
+
+
     }
 
 }
