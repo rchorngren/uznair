@@ -1,13 +1,13 @@
 package com.example.uznair
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,9 +46,12 @@ class MainActivity : AppCompatActivity() {
     fun playButton(view: View) {
         currentPlayer.name = findViewById<TextView>(R.id.playerNameInput).text.toString()
         var playerName = currentPlayer.name
+        var playerScore = currentPlayer.score
         var playIntent = Intent(this, GameActivity::class.java)
-
-        playIntent.putExtra("playerName", playerName)
+        val extras = Bundle()
+        extras.putString("playerName", playerName)
+        extras.putInt("playerScore", playerScore)
+        playIntent.putExtras(extras)
 
         startActivity(playIntent)
     }

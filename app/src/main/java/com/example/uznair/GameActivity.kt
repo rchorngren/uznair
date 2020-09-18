@@ -1,10 +1,10 @@
 package com.example.uznair
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_game.*
+import androidx.appcompat.app.AppCompatActivity
+
 
 class GameActivity : AppCompatActivity() {
 
@@ -13,13 +13,16 @@ class GameActivity : AppCompatActivity() {
     lateinit var newNumber : TextView
     var initialRandomNumber : Int = (1..10).random()
     var newRandomNumber : Int = (1..10).random()
+    var playerScore : Int = 0
+    lateinit var score : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        var playerName = intent.getStringExtra("playerName")
+        val playerName = intent.extras!!.getString("playerName")
+        playerScore = intent.extras!!.getInt("playerScore")
 
         var highButton = findViewById<Button>(R.id.upButton)
         var lowButton = findViewById<Button>(R.id.downButton)
@@ -47,11 +50,16 @@ class GameActivity : AppCompatActivity() {
         initialNumber.text = initialRandomNumber.toString()
         answer = findViewById(R.id.answerText)
         newNumber = findViewById(R.id.newNumber)
+        score = findViewById(R.id.score)
+        score.text = playerScore.toString()
     }
 
     fun guessHigher() {
         if(initialRandomNumber < newRandomNumber) {
             answer.text = "Correct"
+
+            playerScore++
+            score.text = playerScore.toString()
             //increase score in Player.score
         }
         else {
@@ -64,6 +72,9 @@ class GameActivity : AppCompatActivity() {
     fun guessLower() {
         if(initialRandomNumber > newRandomNumber) {
             answer.text = "Correct"
+
+            playerScore++
+            score.text = playerScore.toString()
             //increase score in Player.score
         }
         else {
@@ -79,6 +90,7 @@ class GameActivity : AppCompatActivity() {
 
         initialNumber.text = initialRandomNumber.toString()
         newNumber.text = "To be revealed soon"
+        answer.text = "You choose..."
 
         newRandomNumber = (1..10).random()
 
