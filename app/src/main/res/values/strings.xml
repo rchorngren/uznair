@@ -15,4 +15,10 @@
     <string name="waiting_for_result">You chose...</string>
     <string name="correct_guess">Correct</string>
     <string name="incorrect_guess">Wrong</string>
+
+    <string name="gameover_header">Game Over</string>
+    <string name="total_score">Your total score is %1$s</string>
+
+    <string name="gamecontinue_header">Correct!</string>
+    <string name="correct_card">This card!</string>
 </resources>

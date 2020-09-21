@@ -17,4 +17,9 @@
     <string name="correct_guess">Rätt</string>
     <string name="incorrect_guess">Fel</string>
 
+    <string name="gameover_header">Spelet är slut</string>
+    <string name="total_score">Din totala poäng är %1$s</string>
+
+    <string name="gamecontinue_header">Rätt!</string>
+    <string name="correct_card">Det här kortet!</string>
 </resources>

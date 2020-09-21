@@ -63,6 +63,7 @@ class GameActivity : AppCompatActivity() {
             answer.text = getString(R.string.correct_guess)
             playerScore++
             score.text = playerScore.toString()
+            displayCorrectFragment()
         }
         else {
             answer.text = getString(R.string.incorrect_guess)
@@ -76,12 +77,22 @@ class GameActivity : AppCompatActivity() {
             answer.text = getString(R.string.correct_guess)
             playerScore++
             score.text = playerScore.toString()
+            displayCorrectFragment()
         }
         else {
             answer.text = getString(R.string.incorrect_guess)
             gameOver()
         }
         newNumber.text = newRandomNumber.toString()
+    }
+
+    fun displayCorrectFragment() {
+
+        val correctFragment = CorrectFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.resultContainer, correctFragment, "correctFragment")
+        transaction.commit()
+
     }
 
     fun anotherGame() {
@@ -96,12 +107,18 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun gameOver() {
+
+        val incorrectFragment = IncorrectFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.resultContainer, incorrectFragment, "incorrectFragment")
+        transaction.commit()
+
         var highScoreIntent = Intent(this, HighScoreActivity::class.java)
         val extras = Bundle()
         extras.putString("playerName", playerName)
         extras.putInt("playerScore", playerScore)
         highScoreIntent.putExtras(extras)
-        startActivity(highScoreIntent)
+        // startActivity(highScoreIntent)
     }
 
 }
