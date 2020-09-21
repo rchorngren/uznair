@@ -101,13 +101,16 @@ class GameActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, incorrectFragment, "incorrectFragment")
         transaction.commit()
+    }
 
+    fun goToHighScore() {
         var highScoreIntent = Intent(this, HighScoreActivity::class.java)
         val extras = Bundle()
         extras.putString("playerName", playerName)
         extras.putInt("playerScore", playerScore)
         highScoreIntent.putExtras(extras)
-        // startActivity(highScoreIntent)
+        removeIncorrectFragment()
+        startActivity(highScoreIntent)
     }
 
     fun removeCorrectFragment() {
@@ -115,6 +118,15 @@ class GameActivity : AppCompatActivity() {
         if(correctFragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(correctFragment)
+            transaction.commit()
+        }
+    }
+
+    fun removeIncorrectFragment() {
+        val incorrectFragment = supportFragmentManager.findFragmentByTag("incorrectFragment")
+        if(incorrectFragment != null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(incorrectFragment)
             transaction.commit()
         }
     }
