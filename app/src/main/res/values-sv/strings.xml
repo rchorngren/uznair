@@ -22,4 +22,5 @@
 
     <string name="gamecontinue_header">Rätt!</string>
     <string name="correct_card">Det här kortet!</string>
+    <string name="continue_button">Fortsätt</string>
 </resources>

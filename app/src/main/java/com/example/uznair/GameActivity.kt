@@ -10,12 +10,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.TypedArrayUtils.getString
+import kotlinx.android.synthetic.main.fragment_correct.*
 
 
 class GameActivity : AppCompatActivity() {
 
     lateinit var initialNumber : TextView
-    lateinit var answer : TextView
     lateinit var newNumber : TextView
     var initialRandomNumber : Int = (1..10).random()
     var newRandomNumber : Int = (1..10).random()
@@ -32,7 +32,6 @@ class GameActivity : AppCompatActivity() {
 
         var highButton = findViewById<Button>(R.id.upButton)
         var lowButton = findViewById<Button>(R.id.downButton)
-        var anotherGame = findViewById<Button>(R.id.anotherGameButton)
 
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
@@ -46,13 +45,8 @@ class GameActivity : AppCompatActivity() {
             guessLower()
         }
 
-        anotherGame.setOnClickListener {
-            anotherGame()
-        }
-
         initialNumber = findViewById(R.id.initialNumber)
         initialNumber.text = initialRandomNumber.toString()
-        answer = findViewById(R.id.answerText)
         newNumber = findViewById(R.id.newNumber)
         score = findViewById(R.id.score)
         score.text = playerScore.toString()
@@ -60,13 +54,11 @@ class GameActivity : AppCompatActivity() {
 
     fun guessHigher() {
         if(initialRandomNumber < newRandomNumber) {
-            answer.text = getString(R.string.correct_guess)
             playerScore++
             score.text = playerScore.toString()
             displayCorrectFragment()
         }
         else {
-            answer.text = getString(R.string.incorrect_guess)
             gameOver()
         }
         newNumber.text = newRandomNumber.toString()
@@ -74,13 +66,11 @@ class GameActivity : AppCompatActivity() {
 
     fun guessLower() {
         if(initialRandomNumber > newRandomNumber) {
-            answer.text = getString(R.string.correct_guess)
             playerScore++
             score.text = playerScore.toString()
             displayCorrectFragment()
         }
         else {
-            answer.text = getString(R.string.incorrect_guess)
             gameOver()
         }
         newNumber.text = newRandomNumber.toString()
@@ -99,7 +89,6 @@ class GameActivity : AppCompatActivity() {
         initialRandomNumber = newRandomNumber
         initialNumber.text = initialRandomNumber.toString()
         newNumber.text = getString(R.string.card_backside)
-        answer.text = getString(R.string.waiting_for_result)
         newRandomNumber = (1..10).random()
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
@@ -119,6 +108,15 @@ class GameActivity : AppCompatActivity() {
         extras.putInt("playerScore", playerScore)
         highScoreIntent.putExtras(extras)
         // startActivity(highScoreIntent)
+    }
+
+    fun removeCorrectFragment() {
+        val correctFragment = supportFragmentManager.findFragmentByTag("correctFragment")
+        if(correctFragment != null) {
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(correctFragment)
+            transaction.commit()
+        }
     }
 
 }

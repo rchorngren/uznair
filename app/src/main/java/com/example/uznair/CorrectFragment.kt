@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_correct.*
 
 class CorrectFragment : Fragment() {
 
@@ -18,6 +20,13 @@ class CorrectFragment : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_correct, container, false)
+        var closeCorrectFragmentButton = view.findViewById<Button>(R.id.closeCorrectFragmentButton)
+
+        closeCorrectFragmentButton.setOnClickListener {
+            (activity as GameActivity).removeCorrectFragment()
+            (activity as GameActivity).anotherGame()
+        }
+
         correctCard = view.findViewById(R.id.correctCard)
         var correctNumber = (activity as GameActivity).newRandomNumber.toString()
         correctCard.text = correctNumber
