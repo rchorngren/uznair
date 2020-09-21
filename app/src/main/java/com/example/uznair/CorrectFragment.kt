@@ -11,14 +11,13 @@ class CorrectFragment : Fragment() {
 
     lateinit var correctCard : TextView
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_incorrect, container, false)
+        val view = inflater.inflate(R.layout.fragment_correct, container, false)
         correctCard = view.findViewById(R.id.correctCard)
         var correctNumber = (activity as GameActivity).newRandomNumber.toString()
         correctCard.text = correctNumber
