@@ -2,10 +2,14 @@ package com.example.uznair
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings.Global.getString
+import android.provider.Settings.Secure.getString
+import android.provider.Settings.System.getString
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.TypedArrayUtils.getString
 
 
 class GameActivity : AppCompatActivity() {
@@ -56,12 +60,12 @@ class GameActivity : AppCompatActivity() {
 
     fun guessHigher() {
         if(initialRandomNumber < newRandomNumber) {
-            answer.text = "Correct"
+            answer.text = getString(R.string.correct_guess)
             playerScore++
             score.text = playerScore.toString()
         }
         else {
-            answer.text = "Wrong"
+            answer.text = getString(R.string.incorrect_guess)
             gameOver()
         }
         newNumber.text = newRandomNumber.toString()
@@ -69,12 +73,12 @@ class GameActivity : AppCompatActivity() {
 
     fun guessLower() {
         if(initialRandomNumber > newRandomNumber) {
-            answer.text = "Correct"
+            answer.text = getString(R.string.correct_guess)
             playerScore++
             score.text = playerScore.toString()
         }
         else {
-            answer.text = "Wrong"
+            answer.text = getString(R.string.incorrect_guess)
             gameOver()
         }
         newNumber.text = newRandomNumber.toString()
@@ -83,12 +87,11 @@ class GameActivity : AppCompatActivity() {
     fun anotherGame() {
         initialRandomNumber = newRandomNumber
         initialNumber.text = initialRandomNumber.toString()
-        newNumber.text = "To be revealed soon"
-        answer.text = "You choose..."
+        newNumber.text = getString(R.string.card_backside)
+        answer.text = getString(R.string.waiting_for_result)
         newRandomNumber = (1..10).random()
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
-            Toast.makeText(this, "Disco!!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -98,7 +101,6 @@ class GameActivity : AppCompatActivity() {
         extras.putString("playerName", playerName)
         extras.putInt("playerScore", playerScore)
         highScoreIntent.putExtras(extras)
-
         startActivity(highScoreIntent)
     }
 
