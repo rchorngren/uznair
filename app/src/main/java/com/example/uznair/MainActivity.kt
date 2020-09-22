@@ -39,10 +39,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-
-
-
-
     fun playButton(view: View) {
         currentPlayer.name = findViewById<TextView>(R.id.playerNameInput).text.toString()
         var playerName = currentPlayer.name
