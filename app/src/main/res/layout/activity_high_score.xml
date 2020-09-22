@@ -6,13 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".HighScoreActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/highScoreRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="470dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:listitem="@layout/high_score_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HighScore goes here"
+        android:layout_marginTop="32dp"
+        android:text="@string/highscore_button"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/highscore_button" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="60dp"
+        android:includeFontPadding="false"
+        android:text="@string/new_game_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/highScoreRecyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

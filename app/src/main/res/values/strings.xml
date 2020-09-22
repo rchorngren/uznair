@@ -22,4 +22,6 @@
     <string name="gamecontinue_header">Correct!</string>
     <string name="correct_card">This card!</string>
     <string name="continue_button">Continue</string>
+
+    <string name="new_game_button">New Game</string>
 </resources>
