@@ -15,6 +15,7 @@ class HighScoreActivity : AppCompatActivity() {
     var playerScore : Int = 0
     var playerName : String = ""
 
+    /*
     var highScoreList = mutableListOf<Player>(
         Player("First Player", 5),
         Player("Second Player", 10),
@@ -24,6 +25,8 @@ class HighScoreActivity : AppCompatActivity() {
         Player("Last Player", 23)
     )
 
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_high_score)
@@ -31,9 +34,9 @@ class HighScoreActivity : AppCompatActivity() {
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
 
-        highScoreList.add(Player(playerName, playerScore))
+        DataManager.highScore.add(Player(playerName, playerScore))
 
-        var sortedList = highScoreList.sortedByDescending { it.score }
+        var sortedList = DataManager.highScore.sortedByDescending { it.score }
 
         val recyclerView = findViewById<RecyclerView>(R.id.highScoreRecyclerView)
 
