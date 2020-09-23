@@ -15,18 +15,6 @@ class HighScoreActivity : AppCompatActivity() {
     var playerScore : Int = 0
     var playerName : String = ""
 
-    /*
-    var highScoreList = mutableListOf<Player>(
-        Player("First Player", 5),
-        Player("Second Player", 10),
-        Player("Third Player", 1),
-        Player("Forth Player", 50),
-        Player("Fifth Player", 7),
-        Player("Last Player", 23)
-    )
-
-     */
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_high_score)

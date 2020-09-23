@@ -14,5 +14,4 @@ object DataManager {
         highScore.add(Player("Player Four", 20))
         highScore.add(Player("Player Five", 3))
     }
-
 }
