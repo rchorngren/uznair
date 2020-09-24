@@ -133,4 +133,9 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        var toastMessage = getString(R.string.no_back_button)
+        Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+    }
+
 }

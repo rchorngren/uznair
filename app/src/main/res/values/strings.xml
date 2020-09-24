@@ -24,4 +24,6 @@
     <string name="continue_button">Continue</string>
 
     <string name="new_game_button">New Game</string>
+
+    <string name="no_back_button">Back button is disabled</string>
 </resources>

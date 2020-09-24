@@ -1,11 +1,15 @@
 package com.example.uznair
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +21,7 @@ class HighScoreActivity : AppCompatActivity() {
     var playerName : String = ""
     var comingFrom : String = ""
     lateinit var newGameButton : Button
+    lateinit var backButton : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +33,15 @@ class HighScoreActivity : AppCompatActivity() {
 
         newGameButton = findViewById(R.id.newGameButton)
         newGameButton.visibility = View.GONE
+        backButton = findViewById(R.id.backButtonImage)
 
         if(comingFrom == "GameActivity") {
-
             DataManager.highScore.add(Player(playerName, playerScore))
             newGameButton.visibility = View.VISIBLE
+            backButton.visibility = View.GONE
         }
+
+
 
 
         var sortedList = DataManager.highScore.sortedByDescending { it.score }
@@ -51,6 +59,10 @@ class HighScoreActivity : AppCompatActivity() {
         newGameButton.setOnClickListener {
             newGameButton()
         }
+
+        backButton.setOnClickListener {
+            finish()
+        }
     }
 
     fun newGameButton() {
@@ -65,4 +77,10 @@ class HighScoreActivity : AppCompatActivity() {
 
         startActivity(newGameIntent)
     }
+
+    override fun onBackPressed() {
+        var toastMessage = getString(R.string.no_back_button)
+        Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+    }
+
 }
