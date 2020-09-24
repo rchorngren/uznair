@@ -12,7 +12,8 @@ import androidx.fragment.app.Fragment
 class IncorrectFragment : Fragment() {
 
     lateinit var totalScore : TextView
-    // lateinit var highScoreButton : Button
+    lateinit var newCard : TextView
+    lateinit var highScoreButton : Button
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,10 +24,14 @@ class IncorrectFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_incorrect, container, false)
         totalScore = view.findViewById(R.id.totalScoreView)
-        var playerScore = (activity as GameActivity).playerScore.toString()
-        totalScore.text = getString(R.string.total_score, playerScore)
+        newCard = view.findViewById(R.id.newCard)
 
-        var highScoreButton = view.findViewById<Button>(R.id.gameOverHighScoreButton)
+        var playerScore = (activity as GameActivity).playerScore.toString()
+
+        totalScore.text = getString(R.string.total_score, playerScore)
+        newCard.text = (activity as GameActivity).newRandomNumber.toString()
+
+        highScoreButton = view.findViewById(R.id.gameOverHighScoreButton)
 
         highScoreButton.setOnClickListener {
             (activity as GameActivity).goToHighScore()

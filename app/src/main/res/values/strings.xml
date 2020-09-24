@@ -8,6 +8,7 @@
     <string name="play_button">Play</string>
     <string name="highscore_button">Highscore</string>
 
+    <string name="score">Score: %1$s</string>
     <string name="up_button">Higher</string>
     <string name="down_button">Lower</string>
     <string name="another_button">Another round</string>

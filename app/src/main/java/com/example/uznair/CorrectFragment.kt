@@ -28,8 +28,7 @@ class CorrectFragment : Fragment() {
         }
 
         correctCard = view.findViewById(R.id.correctCard)
-        var correctNumber = (activity as GameActivity).newRandomNumber.toString()
-        correctCard.text = correctNumber
+        correctCard.text = (activity as GameActivity).newRandomNumber.toString()
 
         return view
     }

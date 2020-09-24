@@ -49,13 +49,13 @@ class GameActivity : AppCompatActivity() {
         initialNumber.text = initialRandomNumber.toString()
         newNumber = findViewById(R.id.newNumber)
         score = findViewById(R.id.score)
-        score.text = playerScore.toString()
+        score.text = getString(R.string.score, playerScore.toString())
     }
 
     fun guessHigher() {
         if(initialRandomNumber < newRandomNumber) {
             playerScore++
-            score.text = playerScore.toString()
+            score.text = getString(R.string.score, playerScore.toString())
             displayCorrectFragment()
         }
         else {
@@ -67,7 +67,7 @@ class GameActivity : AppCompatActivity() {
     fun guessLower() {
         if(initialRandomNumber > newRandomNumber) {
             playerScore++
-            score.text = playerScore.toString()
+            score.text = getString(R.string.score, playerScore.toString())
             displayCorrectFragment()
         }
         else {
