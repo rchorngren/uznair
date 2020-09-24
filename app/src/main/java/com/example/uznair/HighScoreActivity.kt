@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_game.*
@@ -14,6 +15,8 @@ class HighScoreActivity : AppCompatActivity() {
 
     var playerScore : Int = 0
     var playerName : String = ""
+    var comingFrom : String = ""
+    lateinit var newGameButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,8 +24,17 @@ class HighScoreActivity : AppCompatActivity() {
 
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
+        comingFrom = intent.extras!!.getString("comingFrom").toString()
 
-        DataManager.highScore.add(Player(playerName, playerScore))
+        newGameButton = findViewById(R.id.newGameButton)
+        newGameButton.visibility = View.GONE
+
+        if(comingFrom == "GameActivity") {
+
+            DataManager.highScore.add(Player(playerName, playerScore))
+            newGameButton.visibility = View.VISIBLE
+        }
+
 
         var sortedList = DataManager.highScore.sortedByDescending { it.score }
 

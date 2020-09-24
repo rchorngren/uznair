@@ -12,8 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var playButton: Button
-    lateinit var playerNameInputField :  TextView
+    lateinit var playButton : Button
+    lateinit var highScoreButton : Button
+    lateinit var playerNameInputField : TextView
     lateinit var currentPlayer : Player
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,8 @@ class MainActivity : AppCompatActivity() {
         currentPlayer = Player("", 0)
 
         playButton = findViewById(R.id.playButton)
+        highScoreButton = findViewById(R.id.highscoreButton)
+
         playButton.isEnabled = false
 
         playerNameInputField = findViewById(R.id.playerNameInput)
@@ -37,9 +40,18 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        playButton.setOnClickListener {
+            playButton()
+        }
+
+        highScoreButton.setOnClickListener {
+            highScoreButton()
+        }
+
     }
 
-    fun playButton(view: View) {
+    fun playButton() {
         currentPlayer.name = findViewById<TextView>(R.id.playerNameInput).text.toString()
         var playerName = currentPlayer.name
         var playerScore = currentPlayer.score
@@ -50,6 +62,14 @@ class MainActivity : AppCompatActivity() {
         playIntent.putExtras(extras)
 
         startActivity(playIntent)
+    }
+
+    fun highScoreButton() {
+        var highScoreIntent = Intent(this, HighScoreActivity::class.java)
+        var comingFrom : String = "MainActivity"
+        highScoreIntent.putExtra("comingFrom", comingFrom)
+
+        startActivity(highScoreIntent)
     }
 
 

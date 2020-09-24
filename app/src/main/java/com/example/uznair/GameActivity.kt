@@ -105,9 +105,11 @@ class GameActivity : AppCompatActivity() {
 
     fun goToHighScore() {
         var highScoreIntent = Intent(this, HighScoreActivity::class.java)
+        var comingFrom : String = "GameActivity"
         val extras = Bundle()
         extras.putString("playerName", playerName)
         extras.putInt("playerScore", playerScore)
+        extras.putString("comingFrom", comingFrom)
         highScoreIntent.putExtras(extras)
         removeIncorrectFragment()
         startActivity(highScoreIntent)

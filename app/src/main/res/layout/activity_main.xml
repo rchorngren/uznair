@@ -48,7 +48,6 @@
         android:layout_width="110dp"
         android:layout_height="45dp"
         android:layout_marginBottom="15dp"
-        android:onClick="playButton"
         android:text="@string/play_button"
         app:layout_constraintBottom_toTopOf="@+id/highscoreButton"
         app:layout_constraintEnd_toEndOf="parent"
