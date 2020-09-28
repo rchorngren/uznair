@@ -78,7 +78,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guessHigher() {
-        Log.d("!!!", "Guessing higher")
         startYPos = 0
         endYPos = 0
         if(initialRandomNumber < newRandomNumber) {
@@ -93,7 +92,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guessLower() {
-        Log.d("!!!", "Guessing lower")
         startYPos = 0
         endYPos = 0
         if(initialRandomNumber > newRandomNumber) {
@@ -127,7 +125,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun gameOver() {
-
         val incorrectFragment = IncorrectFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, incorrectFragment, "incorrectFragment")
