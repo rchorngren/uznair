@@ -27,6 +27,7 @@ class GameActivity : AppCompatActivity() {
     var playerName : String = ""
     var startYPos : Int = 0
     var endYPos : Int = 0
+    var fragmentActive : Boolean = false
 
     lateinit var score : TextView
 
@@ -35,13 +36,13 @@ class GameActivity : AppCompatActivity() {
 
         return when (action) {
             MotionEvent.ACTION_DOWN -> {
-                if (event != null) {
+                if (event != null && !fragmentActive) {
                     startYPos = event.getY().toInt()
                 }
                 true
             }
             MotionEvent.ACTION_UP -> {
-                if (event != null) {
+                if (event != null && !fragmentActive) {
                     endYPos = event.getY().toInt()
                 }
                 while(startYPos > endYPos) {
@@ -63,8 +64,6 @@ class GameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_game)
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
-
-        var gameScreen = findViewById<FrameLayout>(R.id.resultContainer)
 
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
@@ -106,7 +105,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun displayCorrectFragment() {
-
+        fragmentActive = true
         val correctFragment = CorrectFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, correctFragment, "correctFragment")
@@ -125,6 +124,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun gameOver() {
+        fragmentActive = true
         val incorrectFragment = IncorrectFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, incorrectFragment, "incorrectFragment")
@@ -144,6 +144,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun removeCorrectFragment() {
+        fragmentActive = false
         val correctFragment = supportFragmentManager.findFragmentByTag("correctFragment")
         if(correctFragment != null) {
             val transaction = supportFragmentManager.beginTransaction()
