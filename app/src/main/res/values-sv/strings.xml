@@ -10,8 +10,6 @@
     <string name="highscore_button">Topplista</string>
 
     <string name="score">Poäng: %1$s</string>
-    <string name="up_button">Högre</string>
-    <string name="down_button">Lägre</string>
     <string name="another_button">En gång till</string>
     <string name="card_backside">Visas snart...</string>
     <string name="waiting_for_result">Du valde...</string>

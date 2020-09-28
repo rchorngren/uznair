@@ -5,11 +5,15 @@ import android.os.Bundle
 import android.provider.Settings.Global.getString
 import android.provider.Settings.Secure.getString
 import android.provider.Settings.System.getString
+import android.util.Log
+import android.view.MotionEvent
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.TypedArrayUtils.getString
+import androidx.core.view.MotionEventCompat
 import kotlinx.android.synthetic.main.fragment_correct.*
 
 
@@ -21,7 +25,37 @@ class GameActivity : AppCompatActivity() {
     var newRandomNumber : Int = (1..10).random()
     var playerScore : Int = 0
     var playerName : String = ""
+    var startYPos : Int = 0
+    var endYPos : Int = 0
+
     lateinit var score : TextView
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        val action : Int = MotionEventCompat.getActionMasked(event)
+
+        return when (action) {
+            MotionEvent.ACTION_DOWN -> {
+                if (event != null) {
+                    startYPos = event.getY().toInt()
+                }
+                true
+            }
+            MotionEvent.ACTION_UP -> {
+                if (event != null) {
+                    endYPos = event.getY().toInt()
+                }
+                while(startYPos > endYPos) {
+                    guessHigher()
+                }
+
+                while(startYPos < endYPos) {
+                    guessLower()
+                }
+                true
+            }
+            else -> super.onTouchEvent(event)
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,19 +64,10 @@ class GameActivity : AppCompatActivity() {
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
 
-        var highButton = findViewById<Button>(R.id.upButton)
-        var lowButton = findViewById<Button>(R.id.downButton)
+        var gameScreen = findViewById<FrameLayout>(R.id.resultContainer)
 
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
-        }
-
-        highButton.setOnClickListener {
-            guessHigher()
-        }
-
-        lowButton.setOnClickListener {
-            guessLower()
         }
 
         initialNumber = findViewById(R.id.initialNumber)
@@ -53,6 +78,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guessHigher() {
+        Log.d("!!!", "Guessing higher")
+        startYPos = 0
+        endYPos = 0
         if(initialRandomNumber < newRandomNumber) {
             playerScore++
             score.text = getString(R.string.score, playerScore.toString())
@@ -65,6 +93,9 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun guessLower() {
+        Log.d("!!!", "Guessing lower")
+        startYPos = 0
+        endYPos = 0
         if(initialRandomNumber > newRandomNumber) {
             playerScore++
             score.text = getString(R.string.score, playerScore.toString())
