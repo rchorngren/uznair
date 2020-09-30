@@ -1,16 +1,14 @@
 package com.example.uznair
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
 import android.provider.Settings.Global.getString
 import android.provider.Settings.Secure.getString
 import android.provider.Settings.System.getString
 import android.util.Log
 import android.view.MotionEvent
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.core.view.MotionEventCompat
@@ -19,8 +17,10 @@ import kotlinx.android.synthetic.main.fragment_correct.*
 
 class GameActivity : AppCompatActivity() {
 
-    lateinit var initialNumber : TextView
-    lateinit var newNumber : TextView
+    // lateinit var initialNumber : TextView
+    // lateinit var newNumber : TextView
+    lateinit var initialCard : ImageView
+    lateinit var newCard : ImageView
     var initialRandomNumber : Int = (1..10).random()
     var newRandomNumber : Int = (1..10).random()
     var playerScore : Int = 0
@@ -58,7 +58,6 @@ class GameActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -69,11 +68,15 @@ class GameActivity : AppCompatActivity() {
             newRandomNumber = (1..10).random()
         }
 
-        initialNumber = findViewById(R.id.initialNumber)
-        initialNumber.text = initialRandomNumber.toString()
-        newNumber = findViewById(R.id.newNumber)
+        // initialNumber = findViewById(R.id.initialNumber)
+        // initialNumber.text = initialRandomNumber.toString()
+
+        showCardImage(initialRandomNumber)
+
+        // newNumber = findViewById(R.id.newNumber)
         score = findViewById(R.id.score)
         score.text = getString(R.string.score, playerScore.toString())
+
     }
 
     fun guessHigher() {
@@ -87,7 +90,7 @@ class GameActivity : AppCompatActivity() {
         else {
             gameOver()
         }
-        newNumber.text = newRandomNumber.toString()
+        showCardImage(newRandomNumber)
     }
 
     fun guessLower() {
@@ -101,7 +104,7 @@ class GameActivity : AppCompatActivity() {
         else {
             gameOver()
         }
-        newNumber.text = newRandomNumber.toString()
+        showCardImage(newRandomNumber)
     }
 
     fun displayCorrectFragment() {
@@ -115,8 +118,8 @@ class GameActivity : AppCompatActivity() {
 
     fun anotherGame() {
         initialRandomNumber = newRandomNumber
-        initialNumber.text = initialRandomNumber.toString()
-        newNumber.text = getString(R.string.card_backside)
+        // initialNumber.text = initialRandomNumber.toString()
+        // newNumber.text = getString(R.string.card_backside)
         newRandomNumber = (1..10).random()
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
@@ -165,6 +168,45 @@ class GameActivity : AppCompatActivity() {
     override fun onBackPressed() {
         var toastMessage = getString(R.string.no_back_button)
         Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
+    }
+
+    fun showCardImage(valueOfCard : Int) {
+        initialCard = findViewById(R.id.initialCard)
+
+        var cardNumber = valueOfCard
+        when (cardNumber) {
+            1 -> {
+                initialCard.setImageResource(R.drawable.card1)
+            }
+            2 -> {
+                initialCard.setImageResource(R.drawable.card2)
+            }
+            3 -> {
+                initialCard.setImageResource(R.drawable.card3)
+            }
+            4 -> {
+                initialCard.setImageResource(R.drawable.card4)
+            }
+            5 -> {
+                initialCard.setImageResource(R.drawable.card5)
+            }
+            6 -> {
+                initialCard.setImageResource(R.drawable.card6)
+            }
+            7 -> {
+                initialCard.setImageResource(R.drawable.card7)
+            }
+            8 -> {
+                initialCard.setImageResource(R.drawable.card8)
+            }
+            9 -> {
+                initialCard.setImageResource(R.drawable.card9)
+            }
+            10 -> {
+                initialCard.setImageResource(R.drawable.card10)
+            }
+        }
+
     }
 
 }

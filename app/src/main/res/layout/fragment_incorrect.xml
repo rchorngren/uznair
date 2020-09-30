@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="176dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="177dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,5 +53,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totalScoreView" />
+
+    <ImageView
+        android:id="@+id/incorrectFragmentCard"
+        android:layout_width="195dp"
+        android:layout_height="296dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:rotation="35"
+        app:layout_constraintBottom_toTopOf="@+id/gameOverHighScoreButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalScoreView"
+        app:srcCompat="@drawable/cardbackside" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
