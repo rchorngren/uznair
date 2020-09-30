@@ -17,10 +17,7 @@ import kotlinx.android.synthetic.main.fragment_correct.*
 
 class GameActivity : AppCompatActivity() {
 
-    // lateinit var initialNumber : TextView
-    // lateinit var newNumber : TextView
     lateinit var initialCard : ImageView
-    lateinit var newCard : ImageView
     var initialRandomNumber : Int = (1..10).random()
     var newRandomNumber : Int = (1..10).random()
     var playerScore : Int = 0
@@ -68,12 +65,8 @@ class GameActivity : AppCompatActivity() {
             newRandomNumber = (1..10).random()
         }
 
-        // initialNumber = findViewById(R.id.initialNumber)
-        // initialNumber.text = initialRandomNumber.toString()
-
         showCardImage(initialRandomNumber)
 
-        // newNumber = findViewById(R.id.newNumber)
         score = findViewById(R.id.score)
         score.text = getString(R.string.score, playerScore.toString())
 
@@ -118,8 +111,6 @@ class GameActivity : AppCompatActivity() {
 
     fun anotherGame() {
         initialRandomNumber = newRandomNumber
-        // initialNumber.text = initialRandomNumber.toString()
-        // newNumber.text = getString(R.string.card_backside)
         newRandomNumber = (1..10).random()
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()

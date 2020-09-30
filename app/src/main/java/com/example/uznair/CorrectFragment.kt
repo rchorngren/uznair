@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_correct.*
 
 class CorrectFragment : Fragment() {
 
-    lateinit var correctCard : TextView
     lateinit var correctCardImage : ImageView
 
     override fun onCreateView(
@@ -31,8 +30,6 @@ class CorrectFragment : Fragment() {
         }
 
         correctCardImage = view.findViewById(R.id.correctFragmentCard)
-        correctCard = view.findViewById(R.id.correctCard)
-        correctCard.text = (activity as GameActivity).newRandomNumber.toString()
         var cardNumber = (activity as GameActivity).newRandomNumber
 
         showCard(cardNumber)
