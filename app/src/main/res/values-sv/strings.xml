@@ -3,7 +3,7 @@
     <string name="app_name">uznair</string>
     <string name="greeting_header">Hejsan!</string>
     <string name="description_paragraph">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Välkommen till HiLo, ett spel där du ska gissa om värdet på nästa kort är högre eller lägre än det kort som redan visas. Gissar du rätt får du fortsätta och din nästa gissning baseras på kortet du precis drog. Spelet fortsätter till dess att du gissar fel. Stort lycka till!
     </string>
     <string name="player_name_input">Namn</string>
     <string name="play_button">Spela</string>

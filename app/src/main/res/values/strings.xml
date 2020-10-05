@@ -2,7 +2,7 @@
     <string name="app_name">uznair</string>
     <string name="greeting_header">Hello!</string>
     <string name="description_paragraph">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Welcome to HiLo, a game where you predict if the value of the next card is higher or lower than the card currently displayed. If your prediction is correct the game continues and your next prediction is based upon the card that was just drawn. The game continues until your prediction is incorrect. May the odds forever be in your favour!
     </string>
     <string name="player_name_input">Name</string>
     <string name="play_button">Play</string>
