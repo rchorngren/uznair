@@ -2,6 +2,7 @@ package com.example.uznair
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,8 @@ class HighScoreActivity : AppCompatActivity() {
     lateinit var newGameButton : Button
     lateinit var backButton : ImageView
 
+    private var mediaPlayer : MediaPlayer? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_high_score)
@@ -35,13 +38,15 @@ class HighScoreActivity : AppCompatActivity() {
         newGameButton.visibility = View.GONE
         backButton = findViewById(R.id.backButtonImage)
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.high_score)
+
         if(comingFrom == "GameActivity") {
             DataManager.highScore.add(Player(playerName, playerScore))
             newGameButton.visibility = View.VISIBLE
             backButton.visibility = View.GONE
         }
 
-
+        mediaPlayer?.start()
 
 
         var sortedList = DataManager.highScore.sortedByDescending { it.score }

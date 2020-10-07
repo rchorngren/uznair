@@ -30,6 +30,8 @@ class GameActivity : AppCompatActivity() {
     lateinit var score : TextView
 
     private var mediaPlayer : MediaPlayer? = null
+    private var mediaPlayerWin : MediaPlayer? = null
+    private var mediaPlayerGameOver : MediaPlayer? = null
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val action : Int = MotionEventCompat.getActionMasked(event)
@@ -61,8 +63,14 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
+        score = findViewById(R.id.score)
+        score.text = getString(R.string.score, playerScore.toString())
+        mediaPlayer = MediaPlayer.create(this, R.raw.four_sided_circle)
+        mediaPlayerWin = MediaPlayer.create(this, R.raw.game_win)
+        mediaPlayerGameOver = MediaPlayer.create(this, R.raw.game_over)
 
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
@@ -70,13 +78,7 @@ class GameActivity : AppCompatActivity() {
 
         showCardImage(initialRandomNumber)
 
-        score = findViewById(R.id.score)
-        score.text = getString(R.string.score, playerScore.toString())
-
-        mediaPlayer = MediaPlayer.create(this, R.raw.four_sided_circle)
-
         mediaPlayer?.start()
-
     }
 
     fun guessHigher() {
@@ -109,6 +111,8 @@ class GameActivity : AppCompatActivity() {
 
     fun displayCorrectFragment() {
         fragmentActive = true
+        mediaPlayerWin = MediaPlayer.create(this, R.raw.game_win)
+        mediaPlayerWin?.start()
         val correctFragment = CorrectFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, correctFragment, "correctFragment")
@@ -127,8 +131,7 @@ class GameActivity : AppCompatActivity() {
     fun gameOver() {
         fragmentActive = true
         mediaPlayer?.stop()
-        mediaPlayer = MediaPlayer.create(this, R.raw.game_over)
-        mediaPlayer?.start()
+        mediaPlayerGameOver?.start()
         val incorrectFragment = IncorrectFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, incorrectFragment, "incorrectFragment")
