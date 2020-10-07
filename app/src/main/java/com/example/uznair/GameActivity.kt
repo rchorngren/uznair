@@ -2,6 +2,7 @@ package com.example.uznair
 
 import android.content.Intent
 import android.media.Image
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.provider.Settings.Global.getString
 import android.provider.Settings.Secure.getString
@@ -27,6 +28,8 @@ class GameActivity : AppCompatActivity() {
     var fragmentActive : Boolean = false
 
     lateinit var score : TextView
+
+    private var mediaPlayer : MediaPlayer? = null
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val action : Int = MotionEventCompat.getActionMasked(event)
@@ -69,6 +72,10 @@ class GameActivity : AppCompatActivity() {
 
         score = findViewById(R.id.score)
         score.text = getString(R.string.score, playerScore.toString())
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.four_sided_circle)
+
+        mediaPlayer?.start()
 
     }
 
@@ -119,6 +126,9 @@ class GameActivity : AppCompatActivity() {
 
     fun gameOver() {
         fragmentActive = true
+        mediaPlayer?.stop()
+        mediaPlayer = MediaPlayer.create(this, R.raw.game_over)
+        mediaPlayer?.start()
         val incorrectFragment = IncorrectFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.resultContainer, incorrectFragment, "incorrectFragment")
