@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "657385650946",
+    "firebase_url": "https://uznair.firebaseio.com",
+    "project_id": "uznair",
+    "storage_bucket": "uznair.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:657385650946:android:77629f0fe57f268688201b",
+        "android_client_info": {
+          "package_name": "com.example.uznair"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "657385650946-on4bpuk2b4l2nh30pfvr3acds7n58o85.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uznair",
+            "certificate_hash": "b3ba23ff71f24c7b629b00aece14fefb85a6d8b3"
+          }
+        },
+        {
+          "client_id": "657385650946-g5ubfbrarlld6qqpn82apihvp1tq732l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiKZMfAFh-QidX1KKb3xjITlW1kd5pLkg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "657385650946-g5ubfbrarlld6qqpn82apihvp1tq732l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

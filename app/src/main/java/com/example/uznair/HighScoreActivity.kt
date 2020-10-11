@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_game.*
 
 class HighScoreActivity : AppCompatActivity() {
@@ -47,7 +48,6 @@ class HighScoreActivity : AppCompatActivity() {
         }
 
         mediaPlayer?.start()
-
 
         var sortedList = DataManager.highScore.sortedByDescending { it.score }
 

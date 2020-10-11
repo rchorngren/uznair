@@ -1,5 +1,8 @@
 package com.example.uznair
 
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 import android.content.Intent
 import android.media.Image
 import android.media.MediaPlayer
@@ -146,8 +149,21 @@ class GameActivity : AppCompatActivity() {
         extras.putInt("playerScore", playerScore)
         extras.putString("comingFrom", comingFrom)
         highScoreIntent.putExtras(extras)
+        saveToFirebase(playerName, playerScore)
         removeIncorrectFragment()
         startActivity(highScoreIntent)
+    }
+
+    fun saveToFirebase(playerName : String, playerScore : Int) {
+        val ref = FirebaseDatabase.getInstance().getReference("highscore")
+        val highscoreId = ref.push().key
+        val highscore = highscoreId?.let { HighScore(it, playerName, playerScore) }
+
+        if (highscoreId != null) {
+            ref.child(highscoreId).setValue(highscore).addOnCompleteListener {
+                Toast.makeText(applicationContext, "Data saved successfully", Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     fun removeCorrectFragment() {
