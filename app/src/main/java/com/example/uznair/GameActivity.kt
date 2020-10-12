@@ -84,7 +84,6 @@ class GameActivity : AppCompatActivity() {
     }
 
     fun connectToDb() {
-        Log.d("!!!", "running connectToDb")
         ref = FirebaseDatabase.getInstance().getReference("highscore")
 
         ref.addValueEventListener(object: ValueEventListener {

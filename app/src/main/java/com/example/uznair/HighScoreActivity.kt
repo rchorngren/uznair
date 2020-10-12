@@ -15,10 +15,11 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_game.*
 
 class HighScoreActivity : AppCompatActivity() {
+    lateinit var ref : DatabaseReference
 
     var playerScore : Int = 0
     var playerName : String = ""
@@ -48,6 +49,12 @@ class HighScoreActivity : AppCompatActivity() {
             newGameButton.visibility = View.VISIBLE
             backButton.visibility = View.GONE
         }
+        /*
+        else if(comingFrom == "MainActivity") {
+            connectToDb()
+        }
+
+         */
 
         mediaPlayer?.start()
 
@@ -68,6 +75,7 @@ class HighScoreActivity : AppCompatActivity() {
         }
 
         backButton.setOnClickListener {
+            DataManager.highScore.clear()
             finish()
         }
     }
