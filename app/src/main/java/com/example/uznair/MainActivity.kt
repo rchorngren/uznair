@@ -1,6 +1,7 @@
 package com.example.uznair
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var currentPlayer : Player
 
     lateinit var ref : DatabaseReference
+
+    private var mediaPlayer : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,9 @@ class MainActivity : AppCompatActivity() {
         highScoreButton.setOnClickListener {
             highScoreButton()
         }
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.start_game)
+        mediaPlayer?.start()
 
     }
 

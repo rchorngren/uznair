@@ -41,20 +41,19 @@ class HighScoreActivity : AppCompatActivity() {
         newGameButton.visibility = View.GONE
         backButton = findViewById(R.id.backButtonImage)
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.high_score)
 
         if(comingFrom == "GameActivity") {
+            mediaPlayer = MediaPlayer.create(this, R.raw.high_score)
             DataManager.highScore.add(Player(playerName, playerScore))
             saveToFirebase(playerName, playerScore)
             newGameButton.visibility = View.VISIBLE
             backButton.visibility = View.GONE
         }
-        /*
+
         else if(comingFrom == "MainActivity") {
-            connectToDb()
+            mediaPlayer = MediaPlayer.create(this, R.raw.high_score_from_main)
         }
 
-         */
 
         mediaPlayer?.start()
 
@@ -75,7 +74,6 @@ class HighScoreActivity : AppCompatActivity() {
         }
 
         backButton.setOnClickListener {
-            DataManager.highScore.clear()
             finish()
         }
     }
