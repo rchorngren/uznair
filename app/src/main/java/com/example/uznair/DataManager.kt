@@ -1,34 +1,27 @@
 package com.example.uznair
 
+import android.provider.ContactsContract
 import android.util.Log
 import com.google.firebase.database.*
-import kotlin.properties.Delegates
 
 object DataManager {
     lateinit var ref : DatabaseReference
     //lateinit var dbHighScore : MutableList<HighScore>
+
+    lateinit var dbScore : MutableIterable<ContactsContract.Data>
 
     val highScore = mutableListOf<Player>()
 
     init {
         //dbHighScore = mutableListOf()
         //val highScore = mutableListOf<Player>()
-
-
-
         //createHighScoreData()
         connectToDb()
+        Log.d("!!!", "running DataManager init")
     }
-/*
-    fun dbHighScore() {
-        for(h in dbHighScore) {
-            Log.d("!!!", dbHighScore.toString())
-        }
-    }
-
- */
 
     fun connectToDb() {
+        Log.d("!!!", "running connectToDb")
         ref = FirebaseDatabase.getInstance().getReference("highscore")
 
         ref.addValueEventListener(object: ValueEventListener {
@@ -37,39 +30,16 @@ object DataManager {
                     //Log.d("!!!", p0.toString())
                     var data = p0.children
                     Log.d("!!!", data.toString())
-                    /*
-                    for(i in data.value) {
-                        highScore.add(Player(name = i.name, score = i.score))
-                    }
 
-                     */
-/*
                     for(i in data) {
+                        Log.d("!!!", "i: $i")
                         val highScoreEntry = i.getValue(HighScore::class.java)
                         if (highScoreEntry != null && highScoreEntry.score != 0) {
 
-                            Log.d("!!!", "name: ${highScoreEntry.name}")
-                            Log.d("!!!", "score ${highScoreEntry.score}")
-
                             highScore.add(Player(name = highScoreEntry.name, score = highScoreEntry.score))
                         }
                     }
-
- */
-                    data.forEach() {
-                        val highScoreEntry = it.getValue(HighScore::class.java)
-                        //Log.d("!!!", highScoreEntry.toString())
-                        if (highScoreEntry != null) {
-
-                            Log.d("!!!", "name: ${highScoreEntry.name}")
-                            Log.d("!!!", "score ${highScoreEntry.score}")
-
-                            highScore.add(Player(name = highScoreEntry.name, score = highScoreEntry.score))
-                        }
-                    }
-
-
-                }
+                                    }
                 else {
                     Log.d("!!!", "no p0")
                 }
@@ -81,6 +51,7 @@ object DataManager {
 
         })
     }
+
 
     fun createHighScoreData() {
         highScore.add(Player("Player One", 10))
