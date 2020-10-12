@@ -1,8 +1,5 @@
 package com.example.uznair
 
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-
 import android.content.Intent
 import android.media.Image
 import android.media.MediaPlayer
@@ -16,10 +13,12 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.TypedArrayUtils.getString
 import androidx.core.view.MotionEventCompat
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_correct.*
 
 
 class GameActivity : AppCompatActivity() {
+    lateinit var ref : DatabaseReference
 
     lateinit var initialCard : ImageView
     var initialRandomNumber : Int = (1..10).random()
@@ -66,7 +65,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-
+        connectToDb()
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
         score = findViewById(R.id.score)
@@ -82,6 +81,33 @@ class GameActivity : AppCompatActivity() {
         showCardImage(initialRandomNumber)
 
         mediaPlayer?.start()
+    }
+
+    fun connectToDb() {
+        Log.d("!!!", "running connectToDb")
+        ref = FirebaseDatabase.getInstance().getReference("highscore")
+
+        ref.addValueEventListener(object: ValueEventListener {
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if(p0!!.exists()) {
+                    var data = p0.children
+                    for(i in data) {
+                        val highScoreEntry = i.getValue(HighScore::class.java)
+                        if (highScoreEntry != null) {
+                            DataManager.highScore.add(Player(name = highScoreEntry.name, score = highScoreEntry.score))
+                        }
+                    }
+                }
+                else {
+                    Log.d("!!!", "no p0")
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     fun guessHigher() {
@@ -149,11 +175,12 @@ class GameActivity : AppCompatActivity() {
         extras.putInt("playerScore", playerScore)
         extras.putString("comingFrom", comingFrom)
         highScoreIntent.putExtras(extras)
-        saveToFirebase(playerName, playerScore)
+        //saveToFirebase(playerName, playerScore)
         removeIncorrectFragment()
         startActivity(highScoreIntent)
     }
 
+/*
     fun saveToFirebase(playerName : String, playerScore : Int) {
         val ref = FirebaseDatabase.getInstance().getReference("highscore")
         val highscoreId = ref.push().key
@@ -165,6 +192,10 @@ class GameActivity : AppCompatActivity() {
             }
         }
     }
+
+ */
+
+
 
     fun removeCorrectFragment() {
         fragmentActive = false

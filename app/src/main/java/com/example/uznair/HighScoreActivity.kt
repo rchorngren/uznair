@@ -44,6 +44,7 @@ class HighScoreActivity : AppCompatActivity() {
 
         if(comingFrom == "GameActivity") {
             DataManager.highScore.add(Player(playerName, playerScore))
+            saveToFirebase(playerName, playerScore)
             newGameButton.visibility = View.VISIBLE
             backButton.visibility = View.GONE
         }
@@ -71,9 +72,23 @@ class HighScoreActivity : AppCompatActivity() {
         }
     }
 
+    fun saveToFirebase(playerName : String, playerScore : Int) {
+        val ref = FirebaseDatabase.getInstance().getReference("highscore")
+        val highscoreId = ref.push().key
+        val highscore = highscoreId?.let { HighScore(it, playerName, playerScore) }
+
+        if (highscoreId != null) {
+            ref.child(highscoreId).setValue(highscore).addOnCompleteListener {
+                Toast.makeText(applicationContext, "Data saved successfully", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
     fun newGameButton() {
         var newGameIntent = Intent(this, GameActivity::class.java)
         val extras = Bundle()
+
+        DataManager.highScore.clear()
 
         playerScore = 0
 
