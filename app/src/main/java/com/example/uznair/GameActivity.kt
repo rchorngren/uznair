@@ -18,9 +18,8 @@ import kotlinx.android.synthetic.main.fragment_correct.*
 
 
 class GameActivity : AppCompatActivity() {
-    lateinit var ref : DatabaseReference
-
     lateinit var initialCard : ImageView
+
     var initialRandomNumber : Int = (1..10).random()
     var newRandomNumber : Int = (1..10).random()
     var playerScore : Int = 0
@@ -65,7 +64,7 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
-        connectToDb()
+        FirebaseAPI.connectToDb()
         playerName = intent.extras!!.getString("playerName").toString()
         playerScore = intent.extras!!.getInt("playerScore")
         score = findViewById(R.id.score)
@@ -81,35 +80,8 @@ class GameActivity : AppCompatActivity() {
         }
 
         CardImageManager.showCard(initialRandomNumber, initialCard)
-        //showCardImage(initialRandomNumber)
 
         mediaPlayer?.start()
-    }
-
-    fun connectToDb() {
-        ref = FirebaseDatabase.getInstance().getReference("highscore")
-
-        ref.addValueEventListener(object: ValueEventListener {
-
-            override fun onDataChange(p0: DataSnapshot) {
-                if(p0!!.exists()) {
-                    var data = p0.children
-                    for(i in data) {
-                        val highScoreEntry = i.getValue(HighScore::class.java)
-                        if (highScoreEntry != null) {
-                            DataManager.highScore.add(Player(name = highScoreEntry.name, score = highScoreEntry.score))
-                        }
-                    }
-                }
-                else {
-                    Log.d("!!!", "no p0")
-                }
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
     }
 
     fun guessHigher() {
@@ -124,7 +96,6 @@ class GameActivity : AppCompatActivity() {
             gameOver()
         }
         CardImageManager.showCard(newRandomNumber, initialCard)
-        //showCardImage(newRandomNumber)
     }
 
     fun guessLower() {
@@ -139,7 +110,6 @@ class GameActivity : AppCompatActivity() {
             gameOver()
         }
         CardImageManager.showCard(newRandomNumber, initialCard)
-        //showCardImage(newRandomNumber)
     }
 
     fun displayCorrectFragment() {
@@ -179,27 +149,9 @@ class GameActivity : AppCompatActivity() {
         extras.putInt("playerScore", playerScore)
         extras.putString("comingFrom", comingFrom)
         highScoreIntent.putExtras(extras)
-        //saveToFirebase(playerName, playerScore)
         removeIncorrectFragment()
         startActivity(highScoreIntent)
     }
-
-/*
-    fun saveToFirebase(playerName : String, playerScore : Int) {
-        val ref = FirebaseDatabase.getInstance().getReference("highscore")
-        val highscoreId = ref.push().key
-        val highscore = highscoreId?.let { HighScore(it, playerName, playerScore) }
-
-        if (highscoreId != null) {
-            ref.child(highscoreId).setValue(highscore).addOnCompleteListener {
-                Toast.makeText(applicationContext, "Data saved successfully", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
-
- */
-
-
 
     fun removeCorrectFragment() {
         fragmentActive = false
@@ -224,46 +176,5 @@ class GameActivity : AppCompatActivity() {
         var toastMessage = getString(R.string.no_back_button)
         Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
     }
-
-    /* fun showCardImage(valueOfCard : Int) {
-        initialCard = findViewById(R.id.initialCard)
-
-        var cardNumber = valueOfCard
-        when (cardNumber) {
-            1 -> {
-                initialCard.setImageResource(R.drawable.card1)
-            }
-            2 -> {
-                initialCard.setImageResource(R.drawable.card2)
-            }
-            3 -> {
-                initialCard.setImageResource(R.drawable.card3)
-            }
-            4 -> {
-                initialCard.setImageResource(R.drawable.card4)
-            }
-            5 -> {
-                initialCard.setImageResource(R.drawable.card5)
-            }
-            6 -> {
-                initialCard.setImageResource(R.drawable.card6)
-            }
-            7 -> {
-                initialCard.setImageResource(R.drawable.card7)
-            }
-            8 -> {
-                initialCard.setImageResource(R.drawable.card8)
-            }
-            9 -> {
-                initialCard.setImageResource(R.drawable.card9)
-            }
-            10 -> {
-                initialCard.setImageResource(R.drawable.card10)
-            }
-        }
-
-    }
-
-     */
 
 }

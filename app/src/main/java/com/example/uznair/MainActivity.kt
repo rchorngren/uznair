@@ -20,15 +20,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var playerNameInputField : TextView
     lateinit var currentPlayer : Player
 
-    lateinit var ref : DatabaseReference
-
     private var mediaPlayer : MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        connectToDb()
+        FirebaseAPI.connectToDb()
 
         currentPlayer = Player("", 0)
 
@@ -84,32 +82,5 @@ class MainActivity : AppCompatActivity() {
 
         startActivity(highScoreIntent)
     }
-
-    fun connectToDb() {
-        ref = FirebaseDatabase.getInstance().getReference("highscore")
-
-        ref.addValueEventListener(object: ValueEventListener {
-
-            override fun onDataChange(p0: DataSnapshot) {
-                if(p0!!.exists()) {
-                    var data = p0.children
-                    for(i in data) {
-                        val highScoreEntry = i.getValue(HighScore::class.java)
-                        if (highScoreEntry != null) {
-                            DataManager.highScore.add(Player(name = highScoreEntry.name, score = highScoreEntry.score))
-                        }
-                    }
-                }
-                else {
-                    Log.d("!!!", "no p0")
-                }
-            }
-
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }
-
 
 }
