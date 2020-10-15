@@ -33,7 +33,29 @@ class CorrectFragment : Fragment() {
         backCardImage = view.findViewById(R.id.backCorrectFragmentCard)
         var cardNumber = (activity as GameActivity).newRandomNumber
 
-        showCard(cardNumber)
+        CardImageManager.showCard(cardNumber, correctCardImage)
+
+        val context = (activity as GameActivity).applicationContext
+        val scale = context.resources.displayMetrics.density
+        correctCardImage.cameraDistance = 8000 * scale
+        backCardImage.cameraDistance = 8000 * scale
+
+        front_anim = AnimatorInflater.loadAnimator(context, R.animator.front_animator) as AnimatorSet
+        back_anim = AnimatorInflater.loadAnimator(context, R.animator.back_animator) as AnimatorSet
+
+        isFront = if(isFront){
+            front_anim.setTarget(backCardImage)
+            back_anim.setTarget(correctCardImage)
+            front_anim.start()
+            back_anim.start()
+            false
+        } else {
+            front_anim.setTarget(correctCardImage)
+            back_anim.setTarget(backCardImage)
+            back_anim.start()
+            front_anim.start()
+            true
+        }
 
         var closeCorrectFragmentButton = view.findViewById<Button>(R.id.closeCorrectFragmentButton)
 
@@ -44,7 +66,7 @@ class CorrectFragment : Fragment() {
         return view
     }
 
-    fun showCard(cardNumber : Int) {
+    /* fun showCard(cardNumber : Int) {
         when (cardNumber) {
             1 -> {
                 correctCardImage.setImageResource(R.drawable.card1)
@@ -77,26 +99,7 @@ class CorrectFragment : Fragment() {
                 correctCardImage.setImageResource(R.drawable.card10)
             }
         }
-        val context = (activity as GameActivity).applicationContext
-        val scale = context.resources.displayMetrics.density
-        correctCardImage.cameraDistance = 8000 * scale
-        backCardImage.cameraDistance = 8000 * scale
-
-        front_anim = AnimatorInflater.loadAnimator(context, R.animator.front_animator) as AnimatorSet
-        back_anim = AnimatorInflater.loadAnimator(context, R.animator.back_animator) as AnimatorSet
-
-        isFront = if(isFront){
-            front_anim.setTarget(backCardImage)
-            back_anim.setTarget(correctCardImage)
-            front_anim.start()
-            back_anim.start()
-            false
-        } else {
-            front_anim.setTarget(correctCardImage)
-            back_anim.setTarget(backCardImage)
-            back_anim.start()
-            front_anim.start()
-            true
-        }
     }
+
+     */
 }

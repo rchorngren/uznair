@@ -74,11 +74,14 @@ class GameActivity : AppCompatActivity() {
         mediaPlayerWin = MediaPlayer.create(this, R.raw.game_win)
         mediaPlayerGameOver = MediaPlayer.create(this, R.raw.game_over)
 
+        initialCard = findViewById(R.id.initialCard)
+
         while(initialRandomNumber == newRandomNumber) {
             newRandomNumber = (1..10).random()
         }
 
-        showCardImage(initialRandomNumber)
+        CardImageManager.showCard(initialRandomNumber, initialCard)
+        //showCardImage(initialRandomNumber)
 
         mediaPlayer?.start()
     }
@@ -120,7 +123,8 @@ class GameActivity : AppCompatActivity() {
         else {
             gameOver()
         }
-        showCardImage(newRandomNumber)
+        CardImageManager.showCard(newRandomNumber, initialCard)
+        //showCardImage(newRandomNumber)
     }
 
     fun guessLower() {
@@ -134,7 +138,8 @@ class GameActivity : AppCompatActivity() {
         else {
             gameOver()
         }
-        showCardImage(newRandomNumber)
+        CardImageManager.showCard(newRandomNumber, initialCard)
+        //showCardImage(newRandomNumber)
     }
 
     fun displayCorrectFragment() {
@@ -220,7 +225,7 @@ class GameActivity : AppCompatActivity() {
         Toast.makeText(applicationContext, toastMessage, Toast.LENGTH_SHORT).show()
     }
 
-    fun showCardImage(valueOfCard : Int) {
+    /* fun showCardImage(valueOfCard : Int) {
         initialCard = findViewById(R.id.initialCard)
 
         var cardNumber = valueOfCard
@@ -258,5 +263,7 @@ class GameActivity : AppCompatActivity() {
         }
 
     }
+
+     */
 
 }
