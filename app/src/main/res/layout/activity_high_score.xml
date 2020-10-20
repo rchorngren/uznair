@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D2FFFFFF"
     tools:context=".HighScoreActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -37,8 +38,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="60dp"
+        android:backgroundTint="@color/colorPrimary"
         android:includeFontPadding="false"
         android:text="@string/new_game_button"
+        android:textColor="@android:color/primary_text_dark_nodisable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,10 +53,10 @@
         android:layout_height="53dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="22dp"
+        android:contentDescription="TODO"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/abc_vector_test"
-        app:tint="#000000"
-        android:contentDescription="TODO" />
+        app:tint="@color/colorPrimary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

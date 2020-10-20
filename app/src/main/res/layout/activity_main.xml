@@ -5,6 +5,7 @@
     android:id="@+id/headerText"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainActivity">
 
     <TextView
@@ -14,6 +15,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/description_paragraph"
         android:textAlignment="gravity"
+        android:textColor="@android:color/secondary_text_light"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -28,6 +30,8 @@
         android:ems="10"
         android:hint="@string/player_name_input"
         android:inputType="textPersonName"
+        android:textColor="@android:color/secondary_text_light"
+        android:textColorHint="#636363"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tutorialText" />
@@ -37,7 +41,9 @@
         android:layout_width="110dp"
         android:layout_height="45dp"
         android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/play_button"
+        android:textColor="@android:color/primary_text_dark"
         app:layout_constraintBottom_toTopOf="@+id/highscoreButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
@@ -48,7 +54,9 @@
         android:layout_width="110dp"
         android:layout_height="45dp"
         android:layout_marginBottom="50dp"
+        android:backgroundTint="@color/colorPrimary"
         android:text="@string/highscore_button"
+        android:textColor="@android:color/primary_text_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
@@ -56,8 +64,8 @@
 
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="272dp"
-        android:layout_height="85dp"
+        android:layout_width="173dp"
+        android:layout_height="120dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +79,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/tutorial_paragraph"
         android:textAlignment="gravity"
+        android:textColor="@android:color/secondary_text_light"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
