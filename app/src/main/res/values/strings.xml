@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">uznair</string>
     <string name="greeting_header">Hello!</string>
-    <string name="description_paragraph">Welcome to HiLo, a card game where you guess if the value of the next card will be higher or lower than the card currently displayed.</string>
-    <string name="tutorial_paragraph">To play the game you need to tell us your name, then you can start guessing by swiping either up or down depending on if you think the next card will be higher or lower!</string>
+    <string name="description_paragraph">Welcome to HiLo, a card game where you predict if the value of the next card will be higher or lower than the card currently displayed.</string>
+    <string name="tutorial_paragraph">To play the game you need to tell us your name, then you can start guessing by swiping either up or down on the screen!</string>
     <string name="player_name_input">Name</string>
     <string name="play_button">Play</string>
     <string name="highscore_button">Highscore</string>
